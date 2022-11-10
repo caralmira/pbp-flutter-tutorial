@@ -26,7 +26,7 @@ class _MyFormPageState extends State<MyFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Form'),
+        title: Text('Data Form'),
       ),
       drawer: Drawer(
         child: Column(
@@ -43,7 +43,7 @@ class _MyFormPageState extends State<MyFormPage> {
               },
             ),
             ListTile(
-              title: const Text('Form'),
+              title: const Text('Data Form'),
               onTap: () {
                 // Route menu ke halaman form
                 Navigator.pushReplacement(
@@ -67,8 +67,8 @@ class _MyFormPageState extends State<MyFormPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      hintText: "Contoh: Pak Dengklek",
-                      labelText: "Nama Lengkap",
+                      hintText: "Example: Dilan Cepmek",
+                      labelText: "Long Name",
                       // Menambahkan icon agar lebih intuitif
                       icon: const Icon(Icons.people),
                       // Menambahkan circular border agar lebih rapi
@@ -91,7 +91,7 @@ class _MyFormPageState extends State<MyFormPage> {
                     // Validator sebagai validasi form
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Nama lengkap tidak boleh kosong!';
+                        return 'Your name cannot be empty!';
                       }
                       return null;
                     },
@@ -108,18 +108,15 @@ class _MyFormPageState extends State<MyFormPage> {
                     children: [
                       const ListTile(
                         leading: Icon(Icons.school),
-                        title: Text("Jenjang"),
+                        title: Text("Academic Level"),
                       ),
                       CheckboxListTile(
-                        title: const Text('Sarjana'),
+                        title: const Text('Bachelor'),
                         value: jenjangSarjana,
                         onChanged: (bool? value) {
                           setState(() {
                             jenjangSarjana = value!;
-                            if (value) {
-                              jenjangMagister =
-                                  jenjangDiploma = jenjangDoktor = false;
-                            }
+                            if (value) jenjangMagister = jenjangDiploma = jenjangDoktor = false;
                           });
                         },
                       ),
@@ -129,36 +126,27 @@ class _MyFormPageState extends State<MyFormPage> {
                         onChanged: (bool? value) {
                           setState(() {
                             jenjangDiploma = value!;
-                            if (value) {
-                              jenjangMagister =
-                                  jenjangSarjana = jenjangDoktor = false;
-                            }
+                            if (value) jenjangMagister = jenjangSarjana = jenjangDoktor = false;
                           });
                         },
                       ),
                       CheckboxListTile(
-                        title: const Text('Magister'),
+                        title: const Text('Master'),
                         value: jenjangMagister,
                         onChanged: (bool? value) {
                           setState(() {
                             jenjangMagister = value!;
-                            if (value) {
-                              jenjangDiploma =
-                                  jenjangSarjana = jenjangDoktor = false;
-                            }
+                            if (value) jenjangDiploma = jenjangSarjana = jenjangDoktor = false;
                           });
                         },
                       ),
                       CheckboxListTile(
-                        title: const Text('Doktor'),
+                        title: const Text('Doctoral'),
                         value: jenjangDoktor,
                         onChanged: (bool? value) {
                           setState(() {
                             jenjangDoktor = value!;
-                            if (value) {
-                              jenjangMagister =
-                                  jenjangSarjana = jenjangDiploma = false;
-                            }
+                            if (value) jenjangMagister = jenjangSarjana = jenjangDiploma = false;
                           });
                         },
                       ),
@@ -166,7 +154,7 @@ class _MyFormPageState extends State<MyFormPage> {
                         leading: const Icon(Icons.co_present),
                         title: Row(
                           children: [
-                            Text('Umur: ${umur.round()}'),
+                            Text('Age: ${umur.round()}'),
                           ],
                         ),
                         subtitle: Slider(
@@ -183,9 +171,7 @@ class _MyFormPageState extends State<MyFormPage> {
                       ),
                       ListTile(
                         leading: const Icon(Icons.class_),
-                        title: const Text(
-                          'Kelas PBP',
-                        ),
+                        title: const Text('PBP Class',),
                         trailing: DropdownButton(
                           value: kelasPBP,
                           icon: const Icon(Icons.keyboard_arrow_down),
@@ -217,10 +203,10 @@ class _MyFormPageState extends State<MyFormPage> {
                 ),
                 TextButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+                    backgroundColor: MaterialStateProperty.all(Colors.purple),
                   ),
                   child: const Text(
-                    "Simpan",
+                    "Save Data",
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () {
@@ -239,23 +225,19 @@ class _MyFormPageState extends State<MyFormPage> {
                                     const EdgeInsets.only(top: 20, bottom: 20),
                                 shrinkWrap: true,
                                 children: <Widget>[
-                                  const Center(child: Text('Informasi Data')),
+                                  const Center(child: Text('Data Information')),
                                   const SizedBox(height: 20),
                                   // TODO: Munculkan informasi yang didapat dari form
-                                  Center(child: Text('Nama: $_namaLengkap')),
-                                  Center(
-                                      child: Text(
-                                          'Jenjang: ${jenjangSarjana ? 'Sarjana' : ''}${jenjangDiploma ? 'Diploma' : ''}${jenjangMagister ? 'Magister' : ''}${jenjangDoktor ? 'Doktor' : ''}')),
-                                  Center(child: Text('Umur: ${umur.round()}')),
-                                  Center(child: Text('Kelas PBP: $kelasPBP')),
-                                  Center(
-                                      child:
-                                          Text('Practice Mode: $_nilaiSwitch')),
+                                  Center(child: Text('Name: $_namaLengkap')),
+                                  Center(child: Text('Academic Level: ${jenjangSarjana ? 'Sarjana' : ''}${jenjangDiploma ? 'Diploma' : ''}${jenjangMagister ? 'Magister' : ''}${jenjangDoktor ? 'Doktor' : ''}')),
+                                  Center(child: Text('Age: ${umur.round()}')),
+                                  Center(child: Text('PBP Class: $kelasPBP')),
+                                  Center(child: Text('Practice Mode: $_nilaiSwitch')),
                                   TextButton(
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
-                                    child: Text('Kembali'),
+                                    child: Text('Back'),
                                   ),
                                 ],
                               ),

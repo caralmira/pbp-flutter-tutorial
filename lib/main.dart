@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
-  final String title = 'Flutter Demo Home Page';
+  final String title = "Kemi's Flutter Tutorial";
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
